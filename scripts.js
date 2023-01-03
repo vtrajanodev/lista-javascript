@@ -1,9 +1,14 @@
 const addButton = document.getElementById("addButton");
 let id = 0
+const listaDeMetas = []
 
 addButton.addEventListener("click", () => {
 
   const inputValue = document.getElementById("inputValue");
+
+  if (inputValue.value === '') return
+
+  listaDeMetas.push(inputValue.value)
   const ul = document.querySelector(".primeira-lista");
   const li = document.createElement("li");
   const liText = document.createTextNode(inputValue.value);
@@ -20,8 +25,9 @@ addButton.addEventListener("click", () => {
   label.appendChild(liText);
   ul.appendChild(li);
 
-  inputValue.value = ""
+  console.log(listaDeMetas)
 
+  inputValue.value = ""
   id++
 });
 
@@ -29,4 +35,6 @@ const form = document.querySelector("form");
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
+
+  localStorage.setItem(listaDeMetas)
 })
